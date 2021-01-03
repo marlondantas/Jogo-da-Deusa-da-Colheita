@@ -1,0 +1,35 @@
+{
+  "name": "jogo-da-deusa-da-colheita",
+  "version": "1.0.0",
+  "description": "API baseado no mini-game do Harvest Moon: Friends of Mineral Town",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.js",
+    "dev":"noemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marlondantas/Jogo-da-Deusa-da-Colheita.git"
+  },
+  "keywords": [
+    "Jogo",
+    "alexa",
+    "API",
+    "node",
+    "express",
+    "altas",
+    "mongodb"
+  ],
+  "author": "Mar@Lua Azul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marlondantas/Jogo-da-Deusa-da-Colheita/issues"
+  },
+  "homepage": "https://github.com/marlondantas/Jogo-da-Deusa-da-Colheita#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
