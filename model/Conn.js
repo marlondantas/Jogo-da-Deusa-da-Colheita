@@ -75,9 +75,9 @@ class Conn{
       //await this.connect();
       var o_id = new ObjectID(_dadoID);
       
-      var result = await this.cliente.db("EuGastei").collection("User").updateOne({_id:o_id},{$set: _dados});
+      var result = await this.cliente.db("EuGastei").collection("User").updateOne({_id:o_id},{$set: _dados.toJSON()});
 
-      console.log('Registro atualizado com sucesso: ' + result._id);
+      console.log('Registro atualizado com sucesso: ');
 
       return await result;
 
