@@ -20,8 +20,10 @@ class Conn{
     try {
       await this.cliente.connect();
       console.log('Conectado ao banco');
+      return true;
     } catch (error) {
       console.error('Erro ao conectar ao banco ' + error);
+      return false;
     }
   }
 
@@ -36,7 +38,7 @@ class Conn{
 
   async write(_dados){
     try {
-      await this.connect();
+      //await this.connect();
       
       var result = await this.cliente.db("EuGastei").collection(_dados.toString()).insertOne(_dados.toJSON());
       console.log('Registro criado com sucesso: ' + result.insertedId);
@@ -46,13 +48,13 @@ class Conn{
       console.error('Não foi possivel criar o registro' + error);
     }
     finally{
-      await this.close();
+      //await this.close();
     }
   }
   
   async readID(_dadoID){
     try {
-      await this.connect();
+     // await this.connect();
       var o_id = new ObjectID(_dadoID);
       
       var result = await this.cliente.db("EuGastei").collection("User").findOne({_id:o_id});
@@ -64,7 +66,26 @@ class Conn{
       console.error('Não foi possivel encontrado o registro' + error);
     }
     finally{
-      await this.close();
+     // await this.close();
+    }
+  }
+
+  async updateID(_dadoID, _dados){
+    try {
+      //await this.connect();
+      var o_id = new ObjectID(_dadoID);
+      
+      var result = await this.cliente.db("EuGastei").collection("User").updateOne({_id:o_id},{$set: _dados});
+
+      console.log('Registro atualizado com sucesso: ' + result._id);
+
+      return await result;
+
+    } catch (error) {
+      console.error('Não foi possivel atualizado o registro' + error);
+    }
+    finally{
+      //await this.close();
     }
   }
 }
