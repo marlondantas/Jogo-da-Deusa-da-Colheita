@@ -173,12 +173,33 @@ async function Post(req, res) {
     
     var _operacao = arguments.callee.name;
     try {
-        
-    } catch (error) {
-        
-    }
-    console.log('Sistema: '+ _sistema + ' Operacao '+ _operacao + ' _user '+ _user);
+        //TODO Log informativo do sistema.
+        const Conn = new conn();
+        await Conn.connect();
 
+        var User = new user(_user);
+        await User.read(Conn);
+        
+        var nomePost = req.body.nome;
+
+        await User.setNome(nomePost);
+
+        //Update
+        await User.update(Conn);
+        
+        await Conn.close();
+        _response = {USER:User};
+        res.status(200).json(_response);
+
+    } catch (error) {
+        console.error('Não foi possivel criar o registro ' + error);
+
+        var _response =await {error:error};
+        // Logger.erro('Movimentos',_sistema,_operacao,_user,req.params, _response);
+        res.status(500).json({error:error});
+    }
+
+    console.log('Sistema: '+ _sistema + ' Operacao '+ _operacao + ' _user '+ _user);
 }
 
 module.exports = {New, Get, Get_menor, Get_maior, Post};
