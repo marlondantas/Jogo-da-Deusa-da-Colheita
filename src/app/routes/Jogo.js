@@ -8,8 +8,8 @@ routes.get('/jogo/:Sistema/New', game.New); //->Read
 
 routes.get('/jogo/:Sistema/:User', game.Get); //->Read
 
-routes.put('/jogo/:Sistema/:User/Maior', game.Put_maior); //->Update -> Maior
-routes.put('/jogo/:Sistema/:User/Menor', game.Put_menor); //->Update -> Menor
+routes.get('/jogo/:Sistema/:User/Maior', game.Get_maior); //->Update -> Maior
+routes.get('/jogo/:Sistema/:User/Menor', game.Get_menor); //->Update -> Menor
 
 routes.post('/jogo/:Sistema/:User', game.Post); //-> Create
 

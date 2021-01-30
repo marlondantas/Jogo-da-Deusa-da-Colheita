@@ -1,75 +1,184 @@
 
 //require ->
-const path = require('path');
-const hash = require("./../../../model/Hash.js");
+const path = require("path");
 
-function New(req, res) {
+const hash = require("./../../../model/Hash.js");
+const user = require("./../model/User.js");
+const conn = require("./../../../model/Conn.js");
+const game = require("./../model/Jogo.js");
+const { urlencoded } = require("body-parser");
+
+var _response = {};
+
+async function New(req, res) {
     //jogo/:Sistema/New
     var _sistema = req.params.Sistema;
     var _operacao = arguments.callee.name;
 
+    var _response = {};
     try {
-        var _valorHash = hash.gerarChaveHash();
-        var _response = {HASH: _valorHash};
+        const Conn = new conn();
+        await Conn.connect();
+
+        var User = new user();
+        var Game = new game();
+
+        Game.setNum_atual(await Game.gerarNumero())
+        console.log(Game.getNum_atual());
         
-        console.log('Sistema: '+ _sistema + ' Operacao '+ _operacao + ' Hash '+ _valorHash);
+        User.setGame(Game);
+        User.setHash(await User.write(Conn));
 
+        console.log('Sistema: '+ _sistema + ' Operacao '+ _operacao + ' Hash '+  User.getHash());
         // Logger.log('Movimentos',_sistema,_operacao,_user,req.params, _response);
+        
+        _response = {User: User.toJSON()};
+        await Conn.close();
+        
         res.status(200).json(_response);
-    } catch (erroe) {
 
-        var _response = {error:erroe};
+    } catch (erroe) {
+        console.error('Não foi possivel criar o registro' + erroe);
+
+        _response = {error:erroe};
         // Logger.erro('Movimentos',_sistema,_operacao,_user,req.params, _response);
         res.status(500).json(_response);
     }
 }
 
-function Get(req, res) {
+async function Get(req, res) {
     //jogo/:Sistema/:User
     var _user = req.params.User;
     var _sistema = req.params.Sistema;
     
     var _operacao = arguments.callee.name;
     try {
+        const Conn = new conn();
+        await Conn.connect();
         //Busca os dados no banco.
-    
-        var _response = {response:'GET'};
-       
-        // Logger.log('Movimentos',_sistema,_operacao,_user,req.params, _response);
-
-        res.status(200).json(_response);
-
-    } catch (erroe ) {
-        var _response = {error:erroe};
+        var User = await new user(_user,Conn);
+        await User.read(Conn);
         
-        Logger.erro('Movimentos',_sistema,_operacao,_user,req.params, _response);
-        res.status(500).json({error:erroe});
+        //--console.log(await User.Game.numeroNovo());
+        
+        //Retorna o status o ultimo jogo e o numero
+        _response = {USER:User};
+
+        // Logger.log('Movimentos',_sistema,_operacao,_user,req.params, _response);
+        res.status(200).json(_response);
+        await Conn.close();
+        console.log('Sistema: '+ _sistema + ' Operacao '+ _operacao + ' Hash '+  User.getHash());
+    } catch (error) {
+        console.error('Não foi possivel criar o registro' + error);
+        
+        _response = {error:error};
+        // Logger.erro('Movimentos',_sistema,_operacao,_user,req.params, _response);
+        res.status(500).json({error:error});
     }
 }
 
-function Put_menor(req, res) {
+async function Get_menor(req, res) {
     //jogo/:Sistema/:User/Menor
     var _user = req.params.User;
     var _sistema = req.params.Sistema;
     
     var _operacao = arguments.callee.name;
+    try {
+        const Conn = new conn();
+        await Conn.connect();
 
+        var _opcaoJogador = 'MENOR';
+
+        var User = new user(_user);
+        await User.read(Conn);
+        
+        //TODO verifica se o jogo ainda é valido...
+
+        await User.Game.numeroNovo();
+        
+        var saida = await User.Game.verificarOpcao(_opcaoJogador);
+        if (saida){
+            await User.aumentarPontos();
+        }else{
+            console.log('%c Oh my LOSER! ', 'background: #222; color: #bada55');
+        } 
+
+        //Update
+        await User.update(Conn);
+        
+        await Conn.close();
+        _response = {USER:User};
+        res.status(200).json(_response);
+
+    } catch (error) {
+        console.error('Não foi possivel criar o registro ' + error);
+
+        var _response =await {error:error};
+        // Logger.erro('Movimentos',_sistema,_operacao,_user,req.params, _response);
+        res.status(500).json({error:error});
+    }
+
+    console.log('Sistema: '+ _sistema + ' Operacao '+ _operacao + ' _user '+ _user);
 }
 
-function Put_maior(req, res) {
+async function Get_maior(req, res) {
     //jogo/:Sistema/:User/Maior
     var _user = req.params.User;
     var _sistema = req.params.Sistema;
     
     var _operacao = arguments.callee.name;
+    try {
+        const Conn = new conn();
+        await Conn.connect();
+
+        var _opcaoJogador = 'MAIOR';
+
+        var User = new user(_user);
+        await User.read(Conn);
+        
+        //TODO verifica se o jogo ainda é valido...
+
+        await User.Game.numeroNovo();
+        
+        var saida = await User.Game.verificarOpcao(_opcaoJogador);
+        if (saida){
+            await User.aumentarPontos();
+        }else{
+            console.log('%c Oh my LOSER! ', 'background: #222; color: #bada55');
+        } 
+
+        //Update
+        await User.update(Conn);
+        
+        await Conn.close();
+        _response = {USER:User};
+        res.status(200).json(_response);
+
+    } catch (error) {
+        console.error('Não foi possivel criar o registro ' + error);
+
+        var _response =await {error:error};
+        // Logger.erro('Movimentos',_sistema,_operacao,_user,req.params, _response);
+        res.status(500).json({error:error});
+    }
+
+    console.log('Sistema: '+ _sistema + ' Operacao '+ _operacao + ' _user '+ _user);
+
 }
 
-function Post(req, res) {
+async function Post(req, res) {
     //jogo/:Sistema/:User
     var _user = req.params.User;
     var _sistema = req.params.Sistema;
     
     var _operacao = arguments.callee.name;
+    try {
+        
+    } catch (error) {
+        
+    }
+    console.log('Sistema: '+ _sistema + ' Operacao '+ _operacao + ' _user '+ _user);
+
 }
 
-module.exports = {New, Get, Put_menor, Put_menor, Put_maior, Post};
+module.exports = {New, Get, Get_menor, Get_maior, Post};
