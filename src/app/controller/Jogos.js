@@ -1,8 +1,6 @@
 
 //require ->
 const path = require("path");
-
-const hash = require("./../../../model/Hash.js");
 const user = require("./../model/User.js");
 const conn = require("./../../../model/Conn.js");
 const game = require("./../model/Jogo.js");
