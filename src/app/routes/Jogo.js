@@ -3,7 +3,7 @@
 const routes =  require('express').Router();
 const game = require('../controller/jogos.js');
 
-//run
+//run -> Jogo
 routes.get('/jogo/:Sistema/New', game.New); //->Read
 
 routes.get('/jogo/:Sistema/:User', game.Get); //->Read

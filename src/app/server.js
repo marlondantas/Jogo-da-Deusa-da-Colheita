@@ -9,7 +9,7 @@ const path = require('path');
 
 //-Rotas ->
 const jogos = require('./routes/Jogo.js');
-
+const interface = require('./routes/Interface.js');
 //run ->
 const app = express();
 
@@ -22,6 +22,7 @@ app.use(cors({origin:true}))
 
 //Menu princial
 app.use('/',jogos);
+app.use('/',interface);
 
 
 module.exports = app;
