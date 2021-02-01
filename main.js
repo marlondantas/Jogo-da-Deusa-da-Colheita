@@ -1,11 +1,10 @@
 //# Inicia o projeto
-
 //Import
 const app = require('./src/app/server');
 
-
+var port = process.env.PORT || 3000;
 //run
-app.listen(process.env.PORT || 3000, ()=>
+app.listen(port, ()=>
 {
-    console.log('The magic port: http://localhost:'+process.env.PORT || 3000)
+    console.log('The magic port: http://localhost:'+port)
 });

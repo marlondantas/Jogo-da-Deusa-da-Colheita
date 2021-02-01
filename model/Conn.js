@@ -1,7 +1,20 @@
 //Conexão do mongoDB
 //require ->
-const path_prod = "./../src/config/config.prod.json";
-var config_data = require('./../src/config/config.prod.json');
+//var path = require('path'); 
+const fs = require('fs')
+
+var config_data = {
+  "user": "",
+  "password": "",
+  "dbname": ""
+};
+
+if (fs.existsSync('./../src/config/config.prod.json')) { 
+  var config_data = require('./../src/config/config.prod.json');
+} ;
+if (fs.existsSync('./../src/config/config.dev.json')) { 
+  var config_data = require('./../src/config/config.dev.json');
+} ;
 
 var _user =  config_data.user;
 var _password =  config_data.password;
