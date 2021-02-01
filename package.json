@@ -2,7 +2,7 @@
   "name": "jogo-da-deusa-da-colheita",
   "version": "1.0.0",
   "description": "API baseado no mini-game do Harvest Moon: Friends of Mineral Town",
-  "main": "main.js",
+  "main": "node main.js",
   "scripts": {
     "test": "node main.js",
     "dev": "nodemon main.js",
