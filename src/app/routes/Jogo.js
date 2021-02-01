@@ -1,7 +1,7 @@
 //Rota da home
 //importando
 const routes =  require('express').Router();
-const game = require('../controller/jogos.js');
+const game = require('./../controller/jogos.js');
 
 //run -> Jogo
 routes.get('/jogo/:Sistema/New', game.New); //->Read
