@@ -96,12 +96,13 @@ class User{
 
     toJSON(){
         return {
+            
             Data_movimentacao:this.Data_movimentacao,
             Classe:this.Classe,
-            Nome_jogador: this.Nome_jogador,
+            Hash:this.Hash,
             Pontos: this.Pontos,
             Jogo: this.Game,
-            Hash:this.Hash
+            Nome_jogador: this.Nome_jogador            
         }
     }
 }

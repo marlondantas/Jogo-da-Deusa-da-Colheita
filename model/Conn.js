@@ -9,12 +9,11 @@ var config_data = {
   "dbname": ""
 };
 
-if (fs.existsSync('./../src/config/config.prod.json')) { 
-  var config_data = require('./../src/config/config.prod.json');
-} ;
-if (fs.existsSync('./../src/config/config.dev.json')) { 
-  var config_data = require('./../src/config/config.dev.json');
-} ;
+try {
+  config_data = require('./../src/config/config.prod.json');  
+} catch (error) {
+  console.log("Banco não está configurado");
+}
 
 var _user =  config_data.user;
 var _password =  config_data.password;
