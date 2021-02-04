@@ -77,7 +77,7 @@ class Jogo{
             _resultadoJogo = 'IGUAL';
         }
 
-        if(_resultadoJogo === _opcaoJogador || _resultadoJogo === Opcoes_enum.IGUAL){
+        if(_resultadoJogo === _opcaoJogador || _resultadoJogo === 'IGUAL'){
             //Continua...
            // console.log('Ganhou!!!'+ 'atual ' + this.Num_atual +'antigo '+ this.Num_antigo);
             this.Status = await  'Em jogo';
