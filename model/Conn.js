@@ -4,13 +4,15 @@
 const fs = require('fs')
 
 var config_data = {
-  "user": "",
-  "password": "",
-  "dbname": ""
+  "user": process.env.user,
+  "password": process.env.password,
+  "dbname": process.env.dbname
 };
 
 try {
   config_data = require('./../src/config/config.prod.json');  
+  console.log(config_data);
+
 } catch (error) {
   console.log("Banco não está configurado");
 }

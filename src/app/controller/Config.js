@@ -7,9 +7,6 @@ var config_data = null;
 if (fs.existsSync(__dirname +"/../../config/config.prod.json")) { 
   config_data = require(__dirname +"/../../config/config.prod.json");
 } 
-else if (fs.existsSync('./../src/config/config.dev.json')) { 
-  config_data = require('./../../config/config.dev.json');
-}
 
 async function Get(req, res) {
     ///config
