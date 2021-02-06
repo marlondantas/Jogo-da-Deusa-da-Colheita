@@ -11,8 +11,6 @@ var config_data = {
 
 try {
   config_data = require('./../src/config/config.prod.json');  
-  console.log(config_data);
-
 } catch (error) {
   console.log("Banco não está configurado");
 }

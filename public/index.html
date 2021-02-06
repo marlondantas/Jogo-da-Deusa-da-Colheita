@@ -6,15 +6,35 @@
     
     <title>O jogo da Deusa da colheita 🌽</title>
 
+    <script src="js/main.js" defer></script>
+
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
 </head>
 <body>
     <center>
 
         <h1>O jogo da Deusa da colheita 🌽</h1>
 
-        <img src='https://static.wikia.nocookie.net/hmwikia/images/5/52/LilHarvestGoddess.png/revision/latest?cb=20140225221215' />
+        <img src='https://static.wikia.nocookie.net/hmwikia/images/5/52/LilHarvestGoddess.png'/>
+        <!-- <img src='https://i.pinimg.com/originals/d3/a6/8c/d3a68c4490eba6ed227b04cfee812263.jpg'/> -->
 
-        <div>
+        <div class="configuracao">
+            <table border="1">
+                <tr>
+                    <th colspan="3">Dificuldade</th>
+                </tr>
+                <tr>
+                    <td><button>Facil</button></td>
+                    <td><button>Médio</button></td>
+                    <td><button>Dificil</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <br>
+
+        <div class="jogo" disabled>
             <table border="1">
                 <tr>
                     <th colspan="3">JOGO DA DEUSA</th>
@@ -35,6 +55,11 @@
                     <td>Nome:</td>
                     <td><input type="text"></td>
                     <td><button>Enviar</button></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">Historico</td>
+                    <td><button>X</button></td>
                 </tr>
             </table>
         </div>

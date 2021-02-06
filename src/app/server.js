@@ -18,9 +18,9 @@ const app = express();
 //CONFIG ->
 app.use(cors({origin:true}))
     .use(bodyparse.json())
-    .use(bodyparse.urlencoded({extended: false}));
+    .use(bodyparse.urlencoded({extended: false}))
     //.get('*',(_,res) => res.status(404).json({success:false, data: "Endpoint not found"}));
-
+    .use(express.static("public"));
 
 //Menu princial
 app.use('/',jogos);
