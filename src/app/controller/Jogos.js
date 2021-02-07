@@ -1,4 +1,3 @@
-
 //require ->
 const path = require("path");
 const user = require("./../model/User.js");
