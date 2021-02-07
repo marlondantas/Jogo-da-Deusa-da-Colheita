@@ -34,9 +34,9 @@ async function iniciarJogo(_dificuldade) {
     
     var _servico = 'jogo/'
     var _sistema = 'Web/'
-    var _operacao = 'New'
+    var _operacao = 'New/'
 
-    var urlEnvio = Host + _servico + _sistema + _operacao;//TODO colocar dificuldade depois...
+    var urlEnvio = Host + _servico + _sistema + _operacao+_dificuldade;//TODO colocar dificuldade depois...
 
     //TODO try
     // xhr.open('GET',urlEnvio);

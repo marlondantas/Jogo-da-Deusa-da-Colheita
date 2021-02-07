@@ -19,7 +19,6 @@ class Jogo{
         
         this.Classe = "Jogo";
         this.Data_movimentacao = dataNow.getDataNOW();
-       
         
         //--OBJ FROM JSON
         for (var prop in _obj) this[prop] = _obj[prop];
