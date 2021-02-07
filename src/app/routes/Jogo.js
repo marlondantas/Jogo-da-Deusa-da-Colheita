@@ -10,9 +10,11 @@ routes.get('/jogo/:Sistema/New/:Dificuldade', game.New_dificuldade); //->Read
 routes.get('/jogo/:Sistema/:User', game.Get); //->Read
 
 routes.get('/jogo/:Sistema/:User/:Opcao', game.Get_opcao); //->Update -> Menor
-routes.get('/jogo/:Sistema/:User/Maior', game.Get_maior); //->Update -> Maior
-routes.get('/jogo/:Sistema/:User/Menor', game.Get_menor); //->Update -> Menor
 
 routes.post('/jogo/:Sistema/:User', game.Post); //-> Create
+
+//descontinuado
+routes.get('/jogo/:Sistema/:User/Maior', game.Get_maior); //->Update -> Maior
+routes.get('/jogo/:Sistema/:User/Menor', game.Get_menor); //->Update -> Menor
 
 module.exports = routes; 

@@ -71,7 +71,7 @@ async function enviarOpcao(_opcao) {
     //_opcao = 1 -> Maior 
     //_opcao = 0 -> Menor
     var _operacao = 'Maior';
-    if(_opcao == 0){
+    if(_opcao === 0){
         _operacao = 'Menor';
     }
     

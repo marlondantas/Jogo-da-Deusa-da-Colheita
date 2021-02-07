@@ -185,12 +185,14 @@ async function Get_maior(req, res) {
 
 async function Get_opcao(req, res) {
     //jogo/:Sistema/:User/:Opcao
+    console.log("-> Get_opcao");
     var _user = req.params.User;
     var _sistema = req.params.Sistema;
     
     var _operacao = arguments.callee.name;
     try {
         var _opcaoJogador = req.params.Opcao;
+        _opcaoJogador = _opcaoJogador.toUpperCase();
 
         var User = new user(_user);
         await User.read(Conn);
@@ -199,7 +201,7 @@ async function Get_opcao(req, res) {
         if(User.Game.Status === 'Fim de jogo'){
             _resposeStatus = '406';
             _response = {'Erro':'O jogo já foi finalizado'};
-            console.log('O jogo já foi finalizado' + error);
+            console.log('O jogo já foi finalizado');
 
         }else{
 
@@ -223,6 +225,7 @@ async function Get_opcao(req, res) {
     finally{
         res.status(_resposeStatus).json(_response);
     }
+
     console.log('Sistema: '+ _sistema + ' Operacao '+ _operacao + ' _user '+ _user);
 }
 
