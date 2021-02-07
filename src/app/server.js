@@ -8,7 +8,7 @@ const bodyparse = require('body-parser');
 const path = require('path');
 
 //-Rotas ->
-const config = require('./routes/Config.js');
+//const config = require('./routes/Config.js');
 const jogos = require('./routes/Jogo.js');
 const interface = require('./routes/Interface.js');
 
@@ -25,7 +25,7 @@ app.use(cors({origin:true}))
 //Menu princial
 app.use('/',jogos);
 app.use('/',interface);
-app.use('/',config);
+//app.use('/',config);
 
 
 module.exports = app;

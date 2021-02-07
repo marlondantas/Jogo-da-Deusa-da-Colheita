@@ -2,11 +2,12 @@
 //require ->
 const path = require("path");
 const user = require("./../model/User.js");
-const conn = require("./../../../model/Conn.js");
 const game = require("./../model/Jogo.js");
 const { urlencoded } = require("body-parser");
 
 var _response = {};
+var _resposeStatus = 200;
+const Conn = global.conn;
 
 async function New(req, res) {
     //jogo/:Sistema/New
@@ -15,9 +16,6 @@ async function New(req, res) {
 
     var _response = {};
     try {
-        const Conn = new conn();
-        await Conn.connect();
-
         var User = new user();
         var Game = new game();
 
@@ -31,9 +29,8 @@ async function New(req, res) {
         // Logger.log('Movimentos',_sistema,_operacao,_user,req.params, _response);
         
         _response = {User: User.toJSON()};
-        await Conn.close();
         
-        res.status(200).json(_response);
+        res.status(_resposeStatus).json(_response);
 
     } catch (erroe) {
         console.error('Não foi possivel criar o registro' + erroe);
@@ -51,8 +48,6 @@ async function Get(req, res) {
     
     var _operacao = arguments.callee.name;
     try {
-        const Conn = new conn();
-        await Conn.connect();
         //Busca os dados no banco.
         var User = await new user(_user,Conn);
         await User.read(Conn);
@@ -63,7 +58,7 @@ async function Get(req, res) {
         _response = {USER:User};
 
         // Logger.log('Movimentos',_sistema,_operacao,_user,req.params, _response);
-        res.status(200).json(_response);
+        res.status(_resposeStatus).json(_response);
         await Conn.close();
         console.log('Sistema: '+ _sistema + ' Operacao '+ _operacao + ' Hash '+  User.getHash());
     } catch (error) {
@@ -82,9 +77,6 @@ async function Get_menor(req, res) {
     
     var _operacao = arguments.callee.name;
     try {
-        const Conn = new conn();
-        await Conn.connect();
-
         var _opcaoJogador = 'MENOR';
 
         var User = new user(_user);
@@ -104,9 +96,8 @@ async function Get_menor(req, res) {
         //Update
         await User.update(Conn);
         
-        await Conn.close();
         _response = {USER:User};
-        res.status(200).json(_response);
+        res.status(_resposeStatus).json(_response);
 
     } catch (error) {
         console.error('Não foi possivel criar o registro ' + error);
@@ -126,9 +117,6 @@ async function Get_maior(req, res) {
     
     var _operacao = arguments.callee.name;
     try {
-        const Conn = new conn();
-        await Conn.connect();
-
         var _opcaoJogador = 'MAIOR';
 
         var User = new user(_user);
@@ -148,9 +136,8 @@ async function Get_maior(req, res) {
         //Update
         await User.update(Conn);
         
-        await Conn.close();
         _response = {USER:User};
-        res.status(200).json(_response);
+        res.status(_resposeStatus).json(_response);
 
     } catch (error) {
         console.error('Não foi possivel criar o registro ' + error);
@@ -172,9 +159,6 @@ async function Post(req, res) {
     var _operacao = arguments.callee.name;
     try {
         //TODO Log informativo do sistema.
-        const Conn = new conn();
-        await Conn.connect();
-
         var User = new user(_user);
         await User.read(Conn);
         
@@ -185,9 +169,8 @@ async function Post(req, res) {
         //Update
         await User.update(Conn);
         
-        await Conn.close();
         _response = {USER:User};
-        res.status(200).json(_response);
+        res.status(_resposeStatus).json(_response);
 
     } catch (error) {
         console.error('Não foi possivel criar o registro ' + error);
