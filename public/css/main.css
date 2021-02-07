@@ -1,0 +1,19 @@
+.divLabel{
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}
+.divLabel.red{
+    border: 3px solid red;
+}
+.divLabel.green{
+    border: 3px solid green;
+}
+
+.div_config{
+
+}
+
+.div_jogo{
+
+}

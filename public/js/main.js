@@ -162,6 +162,27 @@ function updateFeed(_jogo) {
     Elements.lbl_jogo_numero.innerText = _jogo.User.Jogo.Num_atual;
     Elements.lbl_pontos_valor.innerText = _jogo.User.Pontos;
     Elements.lbl_status_men.innerText = _jogo.User.Jogo.Status;
+    
+    var node = Elements.tbl_hist;
+    while (node.hasChildNodes()) {
+        node.removeChild(node.lastChild);
+    }
+    
+    var rowCount = Elements.tbl_hist.rows.length;
+    // for (var i = 1; i < rowCount; i++) {
+    //     Elements.tbl_hist.deleteRow(tableHeaderRowCount);
+    // }
+
+    for (var prop in _jogo.User.Jogo.Historioco) {
+        //console.log("obj." + prop + " = " + _jogo.User.Jogo.Historioco[prop]);
+        var row = Elements.tbl_hist.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+
+        // Add some text to the new cells:
+        cell1.innerHTML = prop;
+        cell2.innerHTML = _jogo.User.Jogo.Historioco[prop];
+    }
 
     return true;
 }
@@ -192,7 +213,8 @@ var Elements = {
     'div_jogo':document.getElementById('div_jogo'),
     'div_config':document.getElementById('div_config'),
     'div_lbl_der':document.getElementById('div_lbl_der'),
-    'div_lbl_vit':document.getElementById('div_lbl_vit')
+    'div_lbl_vit':document.getElementById('div_lbl_vit'),
+    'tbl_hist':document.getElementById('tbl_hist')
 }
 
 window.onload = displayConfiguracao;

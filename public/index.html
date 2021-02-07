@@ -7,7 +7,7 @@
     <title>O jogo da Deusa da colheita 🌽</title>
 
     <script src="js/main.js" defer></script>
-
+    <link href="css/main.css" rel="stylesheet">
 
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
     
@@ -17,8 +17,12 @@
 
         <h1>O jogo da Deusa da colheita 🌽</h1>
 
-        <div class="divLabel verde" id='div_lbl_vit'><h3>Vitoria</h3></div>
+        <div class="divLabel green" id='div_lbl_vit'><h3>Vitoria</h3></div>
         <div class="divLabel red" id='div_lbl_der'><h3>Derrota</h3></div>
+
+        <div class="divCarregar" id='div_img_carregar'>
+            <img>
+        </div>
 
         <img src='https://static.wikia.nocookie.net/hmwikia/images/5/52/LilHarvestGoddess.png'/>
         <!-- <img src='https://i.pinimg.com/originals/d3/a6/8c/d3a68c4490eba6ed227b04cfee812263.jpg'/> -->
@@ -79,7 +83,7 @@
 
                 <tr>
                     <td colspan="3">
-                        <table border="1">
+                        <table border="1" id='tbl_hist'>
                             <tr>
                                 <td>n^</td>
                                 <td>0</td>
