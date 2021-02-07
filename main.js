@@ -2,11 +2,12 @@
 //conectando com o banco
 const conn = require('./model/Conn.js');
 global.conn = new conn();
+
 try {
     global.conn.connect();     
 } catch (error) {
     console.error("Não foi possivel conectar ao servidor.");
-    break;
+    process.exit(1)
 }
 
 //Import

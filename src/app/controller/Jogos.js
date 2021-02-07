@@ -59,7 +59,6 @@ async function Get(req, res) {
 
         // Logger.log('Movimentos',_sistema,_operacao,_user,req.params, _response);
         res.status(_resposeStatus).json(_response);
-        await Conn.close();
         console.log('Sistema: '+ _sistema + ' Operacao '+ _operacao + ' Hash '+  User.getHash());
     } catch (error) {
         console.error('Não foi possivel criar o registro' + error);
