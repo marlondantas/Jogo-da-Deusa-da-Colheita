@@ -55,7 +55,7 @@ async function Get(req, res) {
         //--console.log(await User.Game.numeroNovo());
         
         //Retorna o status o ultimo jogo e o numero
-        _response = {USER:User};
+        _response = {User:User};
 
         // Logger.log('Movimentos',_sistema,_operacao,_user,req.params, _response);
         res.status(_resposeStatus).json(_response);
@@ -95,7 +95,7 @@ async function Get_menor(req, res) {
         //Update
         await User.update(Conn);
         
-        _response = {USER:User};
+        _response = {User:User};
         res.status(_resposeStatus).json(_response);
 
     } catch (error) {
@@ -135,7 +135,7 @@ async function Get_maior(req, res) {
         //Update
         await User.update(Conn);
         
-        _response = {USER:User};
+        _response = {User:User};
         res.status(_resposeStatus).json(_response);
 
     } catch (error) {
@@ -168,7 +168,7 @@ async function Post(req, res) {
         //Update
         await User.update(Conn);
         
-        _response = {USER:User};
+        _response = {User:User};
         res.status(_resposeStatus).json(_response);
 
     } catch (error) {

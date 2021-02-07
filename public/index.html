@@ -10,35 +10,50 @@
 
 
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
+    
 </head>
 <body>
     <center>
 
         <h1>O jogo da Deusa da colheita 🌽</h1>
 
+        <div class="divLabel verde" id='div_lbl_vit'><h3>Vitoria</h3></div>
+        <div class="divLabel red" id='div_lbl_der'><h3>Derrota</h3></div>
+
         <img src='https://static.wikia.nocookie.net/hmwikia/images/5/52/LilHarvestGoddess.png'/>
         <!-- <img src='https://i.pinimg.com/originals/d3/a6/8c/d3a68c4490eba6ed227b04cfee812263.jpg'/> -->
 
-        <div class="configuracao">
+        <div class="configuracao" id='div_config'>
             <table border="1">
                 <tr>
                     <th colspan="3">Dificuldade</th>
                 </tr>
                 <tr>
-                    <td><button>Facil</button></td>
-                    <td><button>Médio</button></td>
-                    <td><button>Dificil</button></td>
+                    <td><button id='btn_dif_facil' onclick="iniciarJogo('0');">Facil</button></td>
+                    <td><button id='btn_dif_medio'onclick="iniciarJogo('1');">Médio</button></td>
+                    <td><button id='btn_dif_dificil' onclick="iniciarJogo('2');">Dificil</button></td>
                 </tr>
             </table>
         </div>
 
         <br>
 
-        <div class="jogo" disabled>
+        <div class="jogo" id='div_jogo'>
             <table border="1">
                 <tr>
                     <th colspan="3">JOGO DA DEUSA</th>
                 </tr>
+
+                <tr>
+                    <td colspan="1">Status</td>
+                    <td colspan="2"><label id='lbl_status_men'>Esperando para iniciar o jogo</label></td>
+                </tr>
+
+                <tr>
+                    <td colspan="1">Pontos</td>
+                    <td colspan="2"><label id='lbl_pontos_valor'>0</label></td>
+                </tr>
+
                 <tr>
                     <td>Menor</td>
                     <td>Número atual</td>
@@ -46,20 +61,31 @@
                 </tr>
 
                 <tr>
-                    <td><button>Menor</button></td>
-                    <td>0</td>
-                    <td><button>Maior</button></td>
+                    <td><button id='btn_jogo_menor' onclick="enviarOpcao(0);">Menor</button></td>
+                    <td><label id='lbl_jogo_numero'>0</label></td>
+                    <td><button id='btn_jogo_maior'onclick="enviarOpcao(1);">Maior</button></td>
                 </tr>
 
                 <tr>
                     <td>Nome:</td>
-                    <td><input type="text"></td>
-                    <td><button>Enviar</button></td>
+                    <td><input type="text" id='txt_enviar_nome'></td>
+                    <td><button id='btn_enviar_nome'onclick="updateNome();">Enviar</button></td>
                 </tr>
 
                 <tr>
                     <td colspan="2">Historico</td>
                     <td><button>X</button></td>
+                </tr>
+
+                <tr>
+                    <td colspan="3">
+                        <table border="1">
+                            <tr>
+                                <td>n^</td>
+                                <td>0</td>
+                            </tr>
+                        </table>
+                    </td>
                 </tr>
             </table>
         </div>
